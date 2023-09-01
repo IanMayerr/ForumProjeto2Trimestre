@@ -1,11 +1,12 @@
-import './App.css';
+// import Login from "./Login/login"
+import Login from "./Login/login";
 
 function App() {
   return (
     <>
-   <p>Testeoo</p>
+    <Login/>
     </>
   );
 }
 
-export default App;
+export default App
