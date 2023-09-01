@@ -1,24 +1,26 @@
-import { Alinhamento, Barra, BarraTitulo, Botao, Coluna, ForumLogo, FundoLogin, LinkMudarPage, MiniSubTituloLogo, Paragrafo, SubTitulo, SubTituloLogo, Texto, Titulo } from "./loginstyled"
-import Logo from "../../src/Components/Img/Logo.png"
+import { Barra, BarraParagrafo, BarraTitulo, Botao, Coluna, ForumLogo, FundoLogin, LinkMudarPage, MiniSubTituloLogo, Paragrafo, SubTitulo, SubTituloLogo, Texto, Titulo } from "./../Login/loginstyled"
+import Logo from "../../assets/Logo.png"
+import { AlinhamentoRegistro } from "./registrostyled"
 
-function Login(){
+function Registro(){
     return(
         <>
             <FundoLogin>
                 <Coluna>
-                    <Alinhamento>
+                    <AlinhamentoRegistro>
                         <Titulo>
-                            Login
+                            Cadastro
                             <BarraTitulo/>
                         </Titulo>
-
+                        <SubTitulo>Nome</SubTitulo>
+                        <Barra type="text" placeholder="Seu Nome Aqui"></Barra>
                         <SubTitulo>Email</SubTitulo>
                         <Barra type="email" placeholder="SeuEmail@gmail.com"></Barra>
                         <SubTitulo>Senha</SubTitulo>
                         <Barra type="password" placeholder="SuaSenhaAqui"></Barra>
                         <Botao onClick={'#'}>ENTRAR</Botao>
-                        <Texto>Não tem uma conta? <LinkMudarPage href="#">Clique aqui!</LinkMudarPage></Texto>
-                    </Alinhamento>
+                        <Texto>Já tem uma conta? <LinkMudarPage href="#">Clique aqui!</LinkMudarPage></Texto>
+                    </AlinhamentoRegistro>
                 </Coluna>
                 <ForumLogo src={Logo}/>
                 <SubTituloLogo>DIÁLOGO</SubTituloLogo>
@@ -26,11 +28,11 @@ function Login(){
                 <Paragrafo>
                     Um forúm feito no intuito de dar voz a<br/>
                     problemas sociais decorrentes no Brasil.
-
                 </Paragrafo>
+                <BarraParagrafo/>
             </FundoLogin>
         </>
     )
 }
 
-export default Login
+export default Registro
