@@ -11,7 +11,7 @@ function Header() {
                     <Img src={iconPerfil} alt='' />
             </BarraSuperior>
         </>
-    )   
+    )
 }
 
 export default Header

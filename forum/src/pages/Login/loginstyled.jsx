@@ -6,7 +6,6 @@ export const FundoLogin = styled.body`
     height: 100vh;
     width: 100vw;
     display: flex;
-
 `
 
 export const SubTitulo = styled.h2`
@@ -33,8 +32,8 @@ export const Barra = styled.input`
     color: white;
     box-shadow: 0 0 0 0;
     outline: 0;
-    
 `
+
 export const BarraTitulo = styled.div`
     width: 20vw;
     height: 3px;
@@ -42,7 +41,7 @@ export const BarraTitulo = styled.div`
     margin-top: 1vh;
     position: absolute;
     background-color: #89C37E;
-    border-raidus: 10px;
+    border-radius: 10px;
     
 `
 
@@ -124,6 +123,6 @@ export const BarraParagrafo = styled.div`
     margin-left: 731px;
     margin-top: 75vh;
     background-color: #3F8133;
-    border-raidus: 10px;
+    border-radius: 10px;
     position: absolute;
 `

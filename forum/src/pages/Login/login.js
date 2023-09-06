@@ -26,7 +26,6 @@ function Login(){
                 <Paragrafo>
                     Um forúm feito no intuito de dar voz a<br/>
                     problemas sociais decorrentes no Brasil.
-
                 </Paragrafo>
             </FundoLogin>
         </>
