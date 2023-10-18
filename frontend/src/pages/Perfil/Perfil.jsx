@@ -3,19 +3,23 @@ import styled from 'styled-components'
 export const Container = styled.div`
     background-color: #121035;
     border-radius: 30px;
-    height: 110vh;
-    width: 80vw;
-    margin-top: 40px;
-    margin-left: 120px;
-    margin-bottom: 20px;
-`
+    height: 75vh;
+    width: 60vw;
+    margin-top: 20px;
+    /* margin-left: 120px; */
+    /* margin-bottom: 20px; */
+    `
 
 export const Fundo = styled.div`
     align-items: center;
     justify-content: center;
     background-color: #DBFAD0;
-    height: 138vh;
-    width: 100vw;
+    /* height: 138vh; */
+    /* width: 100vw; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 `
 
 export const Botao = styled.button`
@@ -46,6 +50,7 @@ export const CampoEscrita = styled.input`
 export const Fonte = styled.h2`
     color: White;
     margin-left: 15vh;
+    font-size: 18px;
 `
 
 export const Bloco1 = styled.div`
@@ -56,30 +61,40 @@ export const Bloco2 = styled.div`
     margin-left: 20px;
 `
 
-export const PrimeiraDiv = styled.div`
-    display: flex;
-    flex: space-between;
-    align-items: center;
-    justify-content: center;
-`
+// export const PrimeiraDiv = styled.div`
+//     display: flex;
+//     flex: space-between;
+//     align-items: center;
+//     justify-content: center;
+// `
 
-export const SegundaDiv = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 20px;
-`
+// export const SegundaDiv = styled.div`
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     padding-left: 20px;
+// `
 
-export const TerceiraDiv = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 70px;
-`
+// export const TerceiraDiv = styled.div`
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     padding-right: 70px;
+// `
 
 export const QuartaDiv = styled.div`
     display: flex;
     flex: space-between;
     align-items: center;
     justify-content: center;
+`
+
+export const Div1 = styled.div`
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 10vh 20vh 5vh;
+`
+
+export const Grade1 = styled.div`
+    
 `

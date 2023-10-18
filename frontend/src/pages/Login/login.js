@@ -35,6 +35,7 @@ function Login(){
         .then(response =>{
             alert(response.data.message)
             saveUserInfoLocalStorage(response.data.token)
+            localStorage.setItem('@auth:id', response.data.data.id)
             goToPaginaprincipal()
             
         })

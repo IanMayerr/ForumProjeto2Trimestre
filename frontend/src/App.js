@@ -8,11 +8,11 @@ import Rotas from "./Rotas/Rotas.js";
 function App() {
   return (
     <>
-      {/* <Login/>
-      <Paginaprincipal/>
+      {/* <Login/> */}
+      {/* <Paginaprincipal/> */}
       <Perfil/>
-      <Comentário/>*/}
-      <Rotas/>
+      {/* <Comentário/> */}
+      {/* <Rotas/> */}
 
 
 

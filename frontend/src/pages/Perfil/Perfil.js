@@ -3,40 +3,68 @@ import Header from "../../components/Header/Header.js"
 import iconeEditarPerfil from "../../assets/iconeEditarPerfil.svg"
 
 function Perfil() {
+    // const [nome, setNome] = useState('');
+    // //const [password, setPassword] = useState('')
+
+    // const hadleSubmit = (e)=>{
+    //     e.preventDefault()
+
+    //     const data = {
+    //         nome,
+    //         data_nascimento
+    //     };
+
+    //     //recupearar id do usuario
+    //     const idUser = localStorage.getItem('@auth:id');
+
+    //     axios.put('http://localhost:3005/user/' + idUser , data, {
+    //         headers:{
+    //             'Content-Type': 'application/json',
+    //         },
+    //     })
+    //     .then(response =>{
+    //         alert(response.data.message)
+    //         saveUserInfoLocalStorage(response.data.token)
+    //         goToPaginaprincipal()
+            
+    //     })
+    //     .catch(error => console.log(error))
+    // }
+
     return (
-        <Fundo>
+
+        <>
             <Header />
 
-            <Container>
-                <PrimeiraDiv>
+            <Fundo>
+                <Container>
+                
                     <Botao onClick={''}>Voltar</Botao>
-
-                    <Botao onClick={''}>Salvar</Botao>
-                </PrimeiraDiv>
-
-                <SegundaDiv>
+                    {/* <Botao onSubmit={ hadleSubmit } onClick={''}>Salvar</Botao> */}
                     <img src={iconeEditarPerfil} alt='' />
-                </SegundaDiv>
-
-                <TerceiraDiv>
                     <Fonte>Sua foto de Perfil</Fonte>
-                </TerceiraDiv>
 
-                <QuartaDiv>
-                    <Bloco1>
-                        <Fonte>Nome de usuário</Fonte>
-                    </Bloco1>
-                    <Bloco2>
-                        <Fonte>Data de nascimento</Fonte>
-                    </Bloco2>
-                </QuartaDiv>
+                    <QuartaDiv>
+                        <Bloco1>
+                            <Fonte>Nome de usuário</Fonte>
+                        </Bloco1>
+                        <Bloco2>
+                            <Fonte>Data de nascimento</Fonte>
+                        </Bloco2>
+                    </QuartaDiv>
 
-                <QuartaDiv>
-                    <CampoEscrita />
-                    <CampoEscrita />
-                </QuartaDiv>
-            </Container>
-        </Fundo>
+                    <QuartaDiv>
+                        {/* <Barra type="texte" 
+                            value={ nome } 
+                            onChange={(e) => setNome(e.target.value)}                       
+                        /> */}
+
+                        <CampoEscrita />
+                        <CampoEscrita />
+                    </QuartaDiv>
+                </Container>
+            </Fundo>
+        </>
     )
 }
 
