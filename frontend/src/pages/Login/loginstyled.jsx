@@ -1,5 +1,5 @@
 import styled from "styled-components"
-
+import { Link } from "react-router-dom"
 //Parte da coluna azul
 export const FundoLogin = styled.body`
     background: linear-gradient(#338138,#C6EDE7, #C6EDE7,#C6EDE7, #C6EDE7, #338138);
@@ -55,7 +55,7 @@ export const Texto = styled.p`
     font-size: 13px;
 `
 
-export const LinkMudarPage = styled.a`
+export const LinkMudarPage = styled(Link)`
     color: white;
 `
 

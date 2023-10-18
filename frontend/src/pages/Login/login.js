@@ -6,66 +6,54 @@ import { useNavigate } from "react-router-dom"
 
 function Login(){
 
-    //configuração de Login e rotas
-
-    const saveUserInfoLocalStorage = (token)=>{
-        localStorage.setItem('token', token)
-        localStorage.setItem('email', email)
-    }
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const navigate = useNavigate()
-
-    const goToPaginaprincipal = ()=>{
-        navigate('paginaprincipal')
-    }
-
-    const hadleSubmit = (e)=>{
-        e.preventDefault()
-
-        const credentials = {email, password}
-
-        axios.post('http://localhost:8000/login', credentials, {
-            headers:{
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response =>{
-            alert(response.data.message)
-            saveUserInfoLocalStorage(response.data.token)
-            localStorage.setItem('@auth:id', response.data.data.id)
-            goToPaginaprincipal()
-            
-        })
-        .catch(error => console.log(error))
-    }
+    const [email, setEmail] = useState("");
+    const [senha, setPassword] = useState("");
+    const { signed } = useState("");
+    const navigate=useNavigate()
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const data = {
+        email,
+        senha
+      };
+      const response = await axios.post('http://localhost:3008/api/auth/login', data)
+  
+      localStorage.setItem("@Auth:user", JSON.stringify(response.data.data[0].nome));
+      localStorage.setItem("@Auth:token", response.data.data[0].token);
+      
+      return navigate("/home")
+  
+    };
+    console.log(signed);
+    if (!signed) {
 
     return(
         <>
             <FundoLogin>
                 <Coluna>
-                    <Alinhamento onSubmit={hadleSubmit}>
+                    <Alinhamento onSubmit={handleSubmit}>
                         <Titulo>
                             Login
                             <BarraTitulo/>
                         </Titulo>
                         <SubTitulo>Email</SubTitulo>
                         <Barra type="email" 
+                        className={email !== "" ? "has-val input" : "input"}
+                        placeholder="seuEmail@gmail.com"
                         value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="SeuEmail@gmail.com"
-                        
+                        onChange={(e) => setEmail(e.target.value)}   
                         />
+
                         <SubTitulo>Senha</SubTitulo>
                         <Barra type="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        placeholder="SuaSenhaAqui"
+                        className={senha !== "" ? "has-val input" : "input"}
+                        placeholder="suaSenha"
+                        value={senha} 
+                        onChange={(e) => setPassword(e.target.value)}
                         />
                         <Botao type="submit">ENTRAR</Botao>
-                        <Texto>Não tem uma conta? <LinkMudarPage href="#">Clique aqui!</LinkMudarPage></Texto>
+                        <Texto>Não tem uma conta? <LinkMudarPage to="registro">Clique aqui!</LinkMudarPage></Texto>
                     </Alinhamento>
                 </Coluna>
                 <ForumLogo src={Logo}/>
@@ -78,6 +66,9 @@ function Login(){
             </FundoLogin>
         </>
     )
+    } else {
+        return <navigate to="paginaprincipal" />;
+    }
 }
 
 export default Login
