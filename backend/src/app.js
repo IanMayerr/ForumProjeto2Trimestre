@@ -17,9 +17,6 @@ const app = express();
 // app.set('port', process.env.PORT || 3005);
 app.set('port', process.env.PORT || 3333);
 app.use('/api', userRouter);
-<<<<<<< HEAD
 app.use('/api/auth', loginRouter);
-=======
->>>>>>> 252aae2321248bb320fcb154301f24cc90791ca0
 
 module.exports = app;
