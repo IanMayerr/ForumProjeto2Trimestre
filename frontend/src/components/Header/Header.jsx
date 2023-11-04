@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const BarraSuperior = styled.div`
-    width: 98.45vw;
+    width: 95.5vw;
     height: 14vh;
     background-color: #121035;
     display: flex;

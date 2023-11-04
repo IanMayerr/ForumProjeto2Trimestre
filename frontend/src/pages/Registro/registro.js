@@ -1,6 +1,8 @@
 import { Barra, BarraParagrafo, BarraTitulo, Botao, Coluna, ForumLogo, FundoLogin, LinkMudarPage, MiniSubTituloLogo, Paragrafo, SubTitulo, SubTituloLogo, Texto, Titulo } from "./../Login/loginstyled"
 import Logo from "../../assets/Logo.png"
 import { AlinhamentoRegistro } from "./registrostyled"
+import axios from 'axios';
+import { useState } from 'react'
 
 function Registro(){
     const [email, setEmail] = useState("");
@@ -15,15 +17,21 @@ function Registro(){
         senha,
       };
       console.log(data);
-      const response = axios.post("http://localhost:3008/api/user/create", data);
-      alert("Usuário criado com sucesso!");
-      console.log(response)
+      const response = await axios.post("http://localhost:3005/api/user/create", data);
+      console.log(response);
+      if (response.data.success) {
+        alert("Usuário criado com sucesso!");
+      } else {
+        alert("Usuário não criado com sucesso!");
+      }
+      
+      
     };
     return(
         <>
             <FundoLogin>
                 <Coluna>
-                    <AlinhamentoRegistro onSubmit={handleSubmit}>
+                    <AlinhamentoRegistro>
                         <Titulo>
                             Cadastro
                             <BarraTitulo/>
@@ -51,7 +59,7 @@ function Registro(){
                         onChange={(e) => setPassword(e.target.value)}            
                         />
 
-                        <Botao typeof="submit">ENTRAR</Botao>
+                        <Botao onClick={handleSubmit}>ENTRAR</Botao>
                         <Texto>Já tem uma conta? <LinkMudarPage to="login">Clique aqui!</LinkMudarPage></Texto>
                     </AlinhamentoRegistro>
                 </Coluna>
