@@ -52,13 +52,13 @@ async function listUsers(request, response) {
 // Função que cria um novo usuário 
 async function storeUser(request, response) {
     // Preparar o comando de execução no banco
-    const query = 'INSERT INTO users(ds_nome, ds_password, fl_status) VALUES(?, ?, ?);';
+    const query = 'INSERT INTO usuarios(nome, email, senha) VALUES(?, ?, ?);';
 
     // Recuperar os dados enviados na requisição
     const params = Array(
-        request.body.ds_nome,
-        bcrypt.hashSync(request.body.ds_password, 10),
-        request.body.fl_status
+        request.body.nome,
+        request.body.email,
+        request.body.senha
     );
 
     // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
@@ -93,15 +93,33 @@ async function storeUser(request, response) {
     });
 }
 
+async function usuarioById(request, response) {
+    const params = Array(response.body.idUsuario); 
+   
+    const query = 'SELECT * FROM usuarios WHERE id_usuario = ?';
+   
+    connection.query(query, params, (err, results) => {
+       if (results) {
+         resonse
+           .status(200)
+           .json({
+              success: true,
+              message: "",
+              data: results
+           });
+      }
+    });
+}
+
 // Função que atualiza o usuário no banco
 async function updateUser(request, response) {
     // Preparar o comando de execução no banco
-    const query = "UPDATE usuarios SET `nome` = ?, `` = ?, `data_nascimento` = ? WHERE `id` = ?";
+    const query = "UPDATE usuarios SET `nome` = ?, `senha` = ? WHERE `id` = ?";
 
     // Recuperar os dados enviados na requisição respectivamente
     const params = Array(
-        request.body.ds_nome,       
-        request.body.dt_nascimento,
+        request.body.nome,       
+        request.body.senha,
         request.params.id  // Recebimento de parametro da rota
     );
 
@@ -179,9 +197,41 @@ async function deleteUser(request, response) {
     });
 }
 
+async function usuarioById(request, response) {
+    // Preparar o comando de execução no banco
+    connection.query(`SELECT * FROM usuarios WHERE id = ${request.params.id}`, (err, results) => { 
+        try {  // Tenta retornar as solicitações requisitadas
+            if (results) {  // Se tiver conteúdo 
+                response.status(200).json({
+                    success: true,
+                    message: 'Retorno de usuarios com sucesso!',
+                    data: results
+                });
+            } else {  // Retorno com informações de erros
+                response
+                    .status(400)
+                    .json({
+                        success: false,
+                        message: `Não foi possível retornar os usuários.`,
+                        query: err.sql,
+                        sqlMessage: err.sqlMessage
+                    });
+            }
+        } catch (e) {  // Caso aconteça qualquer erro no processo na requisição, retorna uma mensagem amigável
+            response.status(400).json({
+                succes: false,
+                message: "Ocorreu um erro. Não foi possível realizar sua requisição!",
+                query: err.sql,
+                sqlMessage: err.sqlMessage
+            })
+        }   
+    });
+}
+
 module.exports = {
     listUsers,
     storeUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    usuarioById
 }

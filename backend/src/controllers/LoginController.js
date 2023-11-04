@@ -1,5 +1,5 @@
 // Importa as configurações do banco de dados na variável connection
-const connection = require('../src/config/db');
+const connection = require('../../src/config/db');
 // Importar o pacote dotenv, gerenciador de variáveis de ambiente
 require("dotenv").config();
 // Pacote para criptografar a senha de usuario
@@ -17,16 +17,18 @@ async function login(request, response) {
         request.body.email
     );
 
+    console.log(request.body);
     // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
     connection.query(query, params, (err, results) => {
-        try {            
+        try {         
+            console.log(results[0]);
             if (results.length > 0) {                
-                bcrypt.compare(request.body.senha, results[0].senha, (err, result) => {
+                if (request.body.senha === results[0].senha) {
                     if (err) {                        
                         return response.status(401).send({
                             msg: 'Email or password is incorrect!'
                         });
-                    } else if(result) {
+                    } else {
                         const id = results[0].id;
                         const token = jwt.sign({ userId: id },'the-super-strong-secrect',{ expiresIn: 300 });
                         results[0]['token'] = token; 
@@ -39,7 +41,7 @@ async function login(request, response) {
                             data: results
                         });
                     }
-                })
+                }
                 
             } else {
                 response
@@ -54,7 +56,7 @@ async function login(request, response) {
         } catch (e) { // Caso aconteça algum erro na execução
             response.status(400).json({
                     succes: false,
-                    message: "Ocorreu um erro. Não foi possível deletar usuário!",
+                    message: "Ocorreu um erro. Não foi possíve realizar acao usuário!",
                     query: err,
                     sqlMessage: err
                 });
