@@ -3,6 +3,10 @@ import Login from "../pages/Login/login"
 import Paginaprincipal from "../pages/Paginaprincipal/Paginaprincipal"
 import Registro from "../pages/Registro/registro"
 import Perfil from "../pages/Perfil/Perfil"
+import PaginaComentário1 from "../pages/Comentário/Comentario1/PaginaComentário1"
+import PaginaComentário2 from "../pages/Comentário/Comentario2/PaginaComentário2"
+import PaginaComentário3 from "../pages/Comentário/Comentario3/PaginaComentário3"
+import PaginaComentário4 from "../pages/Comentário/Comentario4/PaginaComentário4"
 
 function Rotas(){
     return(
@@ -13,6 +17,10 @@ function Rotas(){
             <Route path="registro" element={<Registro/>}/>
             <Route path="login" element={<Login/>}/>
             <Route path="perfil" element={<Perfil/>}/>
+            <Route path="comentario1" element={<PaginaComentário1/>}/>
+            <Route path="comentario2" element={<PaginaComentário2/>}/>
+            <Route path="comentario3" element={<PaginaComentário3/>}/>
+            <Route path="comentario4" element={<PaginaComentário4/>}/>
         </Routes>
         </BrowserRouter>
     )
