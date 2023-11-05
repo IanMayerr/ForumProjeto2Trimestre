@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Fundo = styled.body`
-    height: 171vh;
+    height: 198vh;
     width: 100vw;
     background-color: rgba(113, 163, 156, 1);
     display: flex;
@@ -112,4 +112,25 @@ export const AddBotton = styled.p`
     font-size: 350%;
     font-weight: bold;
     z-index: 10;
+`
+
+export const SecaoComentario = styled.div`
+    position: absolute;
+    top: 160%;
+    left: 23%;
+    width: 50rem;
+    height: 50vh;
+    background-color: #B0FF94;
+    padding-bottom: 5vh;
+    padding-right: 0rem;
+    padding-left: 3rem;
+    box-shadow: 1vh 1vh white;
+    z-index: 1;
+`
+
+export const TituloSecao = styled.p`
+    color: black;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 273%;
 `

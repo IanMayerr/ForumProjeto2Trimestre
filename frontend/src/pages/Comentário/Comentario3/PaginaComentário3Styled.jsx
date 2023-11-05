@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Fundo = styled.body`
-    height: 171vh;
+    height: 198vh;
     width: 100vw;
     background-color: rgba(113, 163, 156, 1);
     display: flex;
@@ -10,7 +10,7 @@ export const Fundo = styled.body`
 `
 
 export const Comentário = styled.div`
-position: absolute;
+    position: absolute;
     top: 25%;
     left: 23%;
     width: 50rem;
@@ -22,16 +22,6 @@ position: absolute;
     z-index: 1;
 `
 
-export const container_comment = styled.p`
-    position: absolute;
-    color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 3vw;
-    z-index: 2;
-    margin-left: 10vh;
-    margin-top: 2.5vh;
-
-`
 export const Titulo = styled.p`
     font-size: 273%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -103,4 +93,25 @@ export const AddBotton = styled.p`
     font-size: 350%;
     font-weight: bold;
     z-index: 10;
+`
+
+export const SecaoComentario = styled.div`
+    position: absolute;
+    top: 160%;
+    left: 23%;
+    width: 50rem;
+    height: 50vh;
+    background-color: #B0FF94;
+    padding-bottom: 5vh;
+    padding-right: 0rem;
+    padding-left: 3rem;
+    box-shadow: 1vh 1vh white;
+    z-index: 1;
+`
+
+export const TituloSecao = styled.p`
+    color: black;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 273%;
 `

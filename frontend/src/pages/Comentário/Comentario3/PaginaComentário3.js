@@ -1,5 +1,5 @@
 import Header from "../../../components/Header/Header"
-import {Balaozinho, Fundo, Comentário, Titulo, container_comment, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema} from "./PaginaComentário3Styled"
+import {Balaozinho, Fundo, Comentário, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao} from "./PaginaComentário3Styled"
 import Balao from "../../../assets/Balao.png"
 import iconePerfil from "../../../assets/iconePerfil.svg"
 
@@ -11,9 +11,10 @@ function PaginaComentário3 () {
     
         <Balaozinho src={Balao}></Balaozinho>
 
-        <container_comment>
             <TextoMain>Main</TextoMain>
+
             <IconePerfil src={iconePerfil}></IconePerfil>
+
                 <Comentário>
 
                     <Titulo>Herança de Luta e Novo Desafio Urbano</Titulo>
@@ -33,10 +34,20 @@ function PaginaComentário3 () {
                     </Problema>
 
                 </Comentário>
-            </container_comment>
-            <Divisao/>
-            <AddPostBalao src={Balao}></AddPostBalao>
-                 <AddBotton>+</AddBotton>
+
+        <Divisao/>
+
+        <AddPostBalao src={Balao}></AddPostBalao>
+
+        <AddBotton>+</AddBotton>
+
+        <SecaoComentario>
+            <TituloSecao>Comentários</TituloSecao>
+
+
+        </SecaoComentario>
+
+            
         <Fundo/>
     
     </>

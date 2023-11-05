@@ -1,5 +1,5 @@
 import Header from "../../../components/Header/Header"
-import {Balaozinho, Fundo, Comentário, Titulo, container_comment, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema} from "./PaginaComentário2Styled"
+import {Balaozinho, Fundo, Comentário, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao} from "./PaginaComentário2Styled"
 import Balao from "../../../assets/Balao.png"
 import iconePerfil from "../../../assets/iconePerfil.svg"
 
@@ -36,7 +36,11 @@ function PaginaComentário2 () {
             <AddPostBalao src={Balao}></AddPostBalao>
                  <AddBotton>+</AddBotton>
         <Fundo/>
-    
+
+    <SecaoComentario>
+        <TituloSecao>Comentários</TituloSecao>
+    </SecaoComentario>
+
     </>
     )
 }

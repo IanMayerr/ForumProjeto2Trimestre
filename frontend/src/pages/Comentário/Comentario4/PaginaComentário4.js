@@ -1,7 +1,7 @@
-import Header from "../../../components/Header/Header";
-import {Balaozinho, Fundo, Comentário, Titulo, container_comment, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, plantaZé} from "./PaginaComentário4Styled";
-import Balao from "../../../assets/Balao.png";
-import iconePerfil from "../../../assets/iconePerfil.svg";
+import Header from "../../../components/Header/Header"
+import {Balaozinho, Fundo, Comentário, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao} from "./PaginaComentário4Styled"
+import Balao from "../../../assets/Balao.png"
+import iconePerfil from "../../../assets/iconePerfil.svg"
 import plantalittleze from "../../../assets/plantalittleze.png";
 
 function PaginaComentário4 () {
@@ -34,7 +34,13 @@ function PaginaComentário4 () {
             <Divisao/>
             <AddPostBalao src={Balao}></AddPostBalao>
                  <AddBotton>+</AddBotton>
+
+    <SecaoComentario>
+        <TituloSecao>Comentários</TituloSecao>
+    </SecaoComentario>
+
         <Fundo/>
+
     
     </>
     )
