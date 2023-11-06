@@ -2,6 +2,10 @@ import Header from "../../../components/Header/Header"
 import {Balaozinho, Fundo, Comentário, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao} from "./PaginaComentário2Styled"
 import Balao from "../../../assets/Balao.png"
 import iconePerfil from "../../../assets/iconePerfil.svg"
+import { useState } from "react"
+import styled from "styled-components"
+import api from "../../../services/api"
+import { ContainerV, ComentariosV } from "../Comentario1/PaginaComentário1Styled"
 
 const InputComentario = styled.input`
     color: black;
@@ -77,40 +81,46 @@ function PaginaComentário2 () {
 
                 </Comentário>
                 <AddPostBalao onClick={() => setMostrarFormulario(!mostrarFormulario)} src={Balao}></AddPostBalao>
+        </container_comment>
 
-<AddBotton onClick={() => setMostrarFormulario(!mostrarFormulario)}>+</AddBotton>
+        <AddBotton onClick={() => setMostrarFormulario(!mostrarFormulario)}>+</AddBotton>
 
-<form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
-<SecaoComentario>
+        <SecaoComentario>
 
-    <TituloSecao>Comentários</TituloSecao>
+            <TituloSecao>Comentários</TituloSecao>
 
-    {mostrarFormulario && (
+            {mostrarFormulario && (
 
-    <ContainerV>
-        <InputComentario
-        type="text"
-        placeholder="Digite seu comentário"
-        value={comment}
-        onChange={(e) => setNovoComentario(e.target.value)}
-        />
-       <ButtonComentario type="submit">Comentar</ButtonComentario>
-    </ContainerV>
+            <ContainerV>
+                <InputComentario
+                type="text"
+                placeholder="Digite seu comentário"
+                value={comment}
+                onChange={(e) => setNovoComentario(e.target.value)}
+                />
+            <ButtonComentario type="submit">Comentar</ButtonComentario>
+            </ContainerV>
 
-    )}
-    <ComentariosV>
-        {comentarios.length > 0 && (
-            <ul>
-                {comentarios.map((comentario, comentarioIndex) => (
-                    <li key={comentarioIndex}>{comentario.text}</li>
-                ))}
-            </ul>
-        )}
-    </ComentariosV>
-</SecaoComentario>
-</form>
-<Fundo />
-</>
+            )}
+            <ComentariosV>
+                {comentarios.length > 0 && (
+                    <ul>
+                        {comentarios.map((comentario, comentarioIndex) => (
+                            <li key={comentarioIndex}>{comentario.text}</li>
+                        ))}
+                    </ul>
+                )}
+            </ComentariosV>
+        </SecaoComentario>
+        </form>
+        <Fundo />
+    </>
+    );
+}
+
+
+
 
 export default PaginaComentário2

@@ -1,4 +1,4 @@
-import { Barra, BarraParagrafo, BarraTitulo, Botao, Coluna, ForumLogo, FundoLogin, LinkMudarPage, MiniSubTituloLogo, Paragrafo, SubTitulo, SubTituloLogo, Texto, Titulo } from "./../Login/loginstyled"
+import { Barra, BarraTitulo, Botao, Coluna, ForumLogo, FundoLogin, LinkMudarPage, MiniSubTituloLogo, Paragrafo, SubTitulo, SubTituloLogo, Texto, Titulo } from "./../Login/loginstyled"
 import Logo from "../../assets/Logo.png"
 import { AlinhamentoRegistro } from "./registrostyled"
 import axios from 'axios';
@@ -60,7 +60,7 @@ function Registro(){
                         />
 
                         <Botao onClick={handleSubmit}>ENTRAR</Botao>
-                        <Texto>Já tem uma conta? <LinkMudarPage to="login">Clique aqui!</LinkMudarPage></Texto>
+                        <Texto>Já tem uma conta? <LinkMudarPage to="/login">Clique aqui!</LinkMudarPage></Texto>
                     </AlinhamentoRegistro>
                 </Coluna>
                 <ForumLogo src={Logo}/>
@@ -69,8 +69,7 @@ function Registro(){
                 <Paragrafo>
                     Um forúm feito no intuito de dar voz a<br/>
                     problemas sociais decorrentes no Brasil.
-                </Paragrafo>
-                <BarraParagrafo/>
+                </Paragrafo> 
             </FundoLogin>
         </>
     )

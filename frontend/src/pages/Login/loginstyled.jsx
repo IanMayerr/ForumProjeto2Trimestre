@@ -117,12 +117,3 @@ export const Paragrafo = styled.p`
     font-weight: bold;
 `
 
-export const BarraParagrafo = styled.div`
-    width: 25vw;
-    height: 3px;
-    margin-left: 731px;
-    margin-top: 75vh;
-    background-color: #3F8133;
-    border-radius: 10px;
-    position: absolute;
-`

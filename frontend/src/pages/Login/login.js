@@ -63,7 +63,7 @@ function Login() {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <Botao onClick={handleSubmit}>ENTRAR</Botao>
-                            <Texto>Não tem uma conta? <LinkMudarPage to="registro">Clique aqui!</LinkMudarPage></Texto>
+                            <Texto>Não tem uma conta? <LinkMudarPage to="/registro">Clique aqui!</LinkMudarPage></Texto>
                         </Alinhamento>
                     </Coluna>
                     <ForumLogo src={Logo} />
