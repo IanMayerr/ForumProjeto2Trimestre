@@ -117,6 +117,8 @@ export const SecaoComentario = styled.div`
     padding-left: 3rem;
     box-shadow: 1vh 1vh white;
     z-index: 1;
+    display:flex;
+    justify-content: center;
 `
 
 export const TituloSecao = styled.p`
@@ -124,4 +126,18 @@ export const TituloSecao = styled.p`
     text-align: center;
     font-family: sans-serif;
     font-size: 273%;
+    position: relative;
+    left: -2%;
+`
+export const ContainerV = styled.div`
+    position: absolute;
+    top: 30%;
+
+    
+
+`
+export const ComentariosV = styled.div`
+    position: relative;
+    top: 85%;
+    
 `

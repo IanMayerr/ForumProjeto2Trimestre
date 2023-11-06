@@ -20,7 +20,7 @@ const bcrypt = require('bcrypt');
 // Função que retorna todos usuários no banco de dados
 async function listUsers(request, response) {
     // Preparar o comando de execução no banco
-    connection.query('SELECT * FROM users', (err, results) => { 
+    connection.query('SELECT * FROM users', (err, results) => {
         try {  // Tenta retornar as solicitações requisitadas
             if (results) {  // Se tiver conteúdo 
                 response.status(200).json({
@@ -45,7 +45,7 @@ async function listUsers(request, response) {
                 query: err.sql,
                 sqlMessage: err.sqlMessage
             })
-        }   
+        }
     });
 }
 
@@ -84,30 +84,30 @@ async function storeUser(request, response) {
             }
         } catch (e) { // Caso aconteça algum erro na execução
             response.status(400).json({
-                    succes: false,
-                    message: "Ocorreu um erro. Não foi possível cadastrar usuário!",
-                    query: err.sql,
-                    sqlMessage: err.sqlMessage
-                });
+                succes: false,
+                message: "Ocorreu um erro. Não foi possível cadastrar usuário!",
+                query: err.sql,
+                sqlMessage: err.sqlMessage
+            });
         }
     });
 }
 
 async function usuarioById(request, response) {
-    const params = Array(response.body.idUsuario); 
-   
+    const params = Array(response.body.idUsuario);
+
     const query = 'SELECT * FROM usuarios WHERE id_usuario = ?';
-   
+
     connection.query(query, params, (err, results) => {
-       if (results) {
-         resonse
-           .status(200)
-           .json({
-              success: true,
-              message: "",
-              data: results
-           });
-      }
+        if (results) {
+            resonse
+                .status(200)
+                .json({
+                    success: true,
+                    message: "",
+                    data: results
+                });
+        }
     });
 }
 
@@ -118,7 +118,7 @@ async function updateUser(request, response) {
 
     // Recuperar os dados enviados na requisição respectivamente
     const params = Array(
-        request.body.nome,       
+        request.body.nome,
         request.body.senha,
         request.params.id  // Recebimento de parametro da rota
     );
@@ -146,11 +146,11 @@ async function updateUser(request, response) {
             }
         } catch (e) { // Caso aconteça algum erro na execução
             response.status(400).json({
-                    succes: false,
-                    message: "Ocorreu um erro. Não foi possível atualizar usuário!",
-                    query: err.sql,
-                    sqlMessage: err.sqlMessage
-                });
+                succes: false,
+                message: "Ocorreu um erro. Não foi possível atualizar usuário!",
+                query: err.sql,
+                sqlMessage: err.sqlMessage
+            });
         }
     });
 }
@@ -188,43 +188,41 @@ async function deleteUser(request, response) {
             }
         } catch (e) { // Caso aconteça algum erro na execução
             response.status(400).json({
-                    succes: false,
-                    message: "Ocorreu um erro. Não foi possível deletar usuário!",
-                    query: err.sql,
-                    sqlMessage: err.sqlMessage
-                });
+                succes: false,
+                message: "Ocorreu um erro. Não foi possível deletar usuário!",
+                query: err.sql,
+                sqlMessage: err.sqlMessage
+            });
         }
     });
 }
 
 async function usuarioById(request, response) {
     // Preparar o comando de execução no banco
-    connection.query(`SELECT * FROM usuarios WHERE id = ${request.params.id}`, (err, results) => { 
-        try {  // Tenta retornar as solicitações requisitadas
-            if (results) {  // Se tiver conteúdo 
+    connection.query(`SELECT * FROM usuarios WHERE id = ${request.params.id}`, (err, results) => {
+        try {
+            if (results.length > 0) {  // Verifique se há resultados
                 response.status(200).json({
                     success: true,
-                    message: 'Retorno de usuarios com sucesso!',
+                    message: 'Retorno de usuários com sucesso!',
                     data: results
                 });
-            } else {  // Retorno com informações de erros
-                response
-                    .status(400)
-                    .json({
-                        success: false,
-                        message: `Não foi possível retornar os usuários.`,
-                        query: err.sql,
-                        sqlMessage: err.sqlMessage
-                    });
+            } else {
+                response.status(400).json({
+                    success: false,
+                    message: 'Não foi possível retornar os usuários.',
+                    query: err.sql,
+                    sqlMessage: err.sqlMessage
+                });
             }
-        } catch (e) {  // Caso aconteça qualquer erro no processo na requisição, retorna uma mensagem amigável
+        } catch (e) {
             response.status(400).json({
-                succes: false,
-                message: "Ocorreu um erro. Não foi possível realizar sua requisição!",
+                success: false,
+                message: 'Ocorreu um erro. Não foi possível realizar sua requisição!',
                 query: err.sql,
                 sqlMessage: err.sqlMessage
-            })
-        }   
+            });
+        }
     });
 }
 
@@ -233,5 +231,5 @@ module.exports = {
     storeUser,
     updateUser,
     deleteUser,
-    usuarioById
+    usuarioById,
 }

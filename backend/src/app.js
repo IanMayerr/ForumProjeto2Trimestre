@@ -10,6 +10,7 @@ const cors = require('cors');
 // dotenv.config()
 const userRouter = require('../src/routes/userRoutes');
 const loginRouter = require('./routes/loginRouter');
+const commentRouter = require('./routes/commentRouter')
 
 const dotenv = require('dotenv').config();
 
@@ -17,10 +18,12 @@ const dotenv = require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 // Setar a porta do servidor, a parir do arquivo .env ou assumir 3005
 // app.set('port', process.env.PORT || 3005);
-app.set('port', process.env.PORT || 3333);
+app.set('port', process.env.PORT || 3005);
 app.use('/api', userRouter);
 app.use('/api/auth', loginRouter);
+app.use('/api/createComments', commentRouter)
 
 module.exports = app;

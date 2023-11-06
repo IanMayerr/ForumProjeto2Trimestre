@@ -3,7 +3,52 @@ import {Balaozinho, Fundo, Comentário, Titulo, UsuarioNome, Divisao, IconePerfi
 import Balao from "../../../assets/Balao.png"
 import iconePerfil from "../../../assets/iconePerfil.svg"
 
+const InputComentario = styled.input`
+    color: black;
+    position: relative;
+    left: -2%;
+    font-size: 15px;
+    top: 5%;
+    width: 50vw;
+    height: 5vh;
+    border: none;
+    padding-left: 10px;
+
+`
+
+const ButtonComentario = styled.button`
+    background-color: #2eab5a;
+    margin: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    margin-right: 100%;
+    left: 96.8%;
+    top: -15%;
+    height: 5.3vh;
+    cursor: pointer;
+`
+
 function PaginaComentário2 () {
+    const [comentarios] = useState([]);
+    const [comment, setNovoComentario] = useState('');
+    const [mostrarFormulario, setMostrarFormulario] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            comment,
+        };
+  
+        const response = await api.post('http://localhost:3005/api/createComment', data);
+        console.log(response)
+        if (response.data.success) {
+            alert("Comentário Enviado com Sucesso!");
+        }
+      };
+
+
     return(
     <>
 
@@ -31,18 +76,41 @@ function PaginaComentário2 () {
                     </Problema>
 
                 </Comentário>
-            </container_comment>
-            <Divisao/>
-            <AddPostBalao src={Balao}></AddPostBalao>
-                 <AddBotton>+</AddBotton>
-        <Fundo/>
+                <AddPostBalao onClick={() => setMostrarFormulario(!mostrarFormulario)} src={Balao}></AddPostBalao>
 
-    <SecaoComentario>
-        <TituloSecao>Comentários</TituloSecao>
-    </SecaoComentario>
+<AddBotton onClick={() => setMostrarFormulario(!mostrarFormulario)}>+</AddBotton>
 
-    </>
-    )
-}
+<form onSubmit={handleSubmit}>
+
+<SecaoComentario>
+
+    <TituloSecao>Comentários</TituloSecao>
+
+    {mostrarFormulario && (
+
+    <ContainerV>
+        <InputComentario
+        type="text"
+        placeholder="Digite seu comentário"
+        value={comment}
+        onChange={(e) => setNovoComentario(e.target.value)}
+        />
+       <ButtonComentario type="submit">Comentar</ButtonComentario>
+    </ContainerV>
+
+    )}
+    <ComentariosV>
+        {comentarios.length > 0 && (
+            <ul>
+                {comentarios.map((comentario, comentarioIndex) => (
+                    <li key={comentarioIndex}>{comentario.text}</li>
+                ))}
+            </ul>
+        )}
+    </ComentariosV>
+</SecaoComentario>
+</form>
+<Fundo />
+</>
 
 export default PaginaComentário2
