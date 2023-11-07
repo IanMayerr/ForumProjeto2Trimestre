@@ -9,7 +9,7 @@ export const Fundo = styled.body`
     position: relative;
 `
 
-export const Comentário = styled.div`
+export const Comentario = styled.div`
 position: absolute;
     top: 25%;
     left: 23%;
@@ -137,7 +137,11 @@ export const ContainerV = styled.div`
 
 `
 export const ComentariosV = styled.div`
-    position: relative;
-    top: 85%;
-    
+    position: absolute;
+    top: 50%;
+    width: 49vw;
+    height: 24vh;
+    left: 13%;
+    background-color: #9ceb60;
+    color: black;
 `

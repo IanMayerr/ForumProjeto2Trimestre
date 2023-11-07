@@ -5,7 +5,7 @@ import iconePerfil from "../../../assets/iconePerfil.svg"
 import { useState } from "react"
 import styled from "styled-components"
 import api from "../../../services/api"
-import { ContainerV, ComentariosV } from "../Comentario1/PaginaComentário1Styled"
+import { ContainerV, ComentariosV } from "../Comentario1/PaginaComentario1Styled"
 
 const InputComentario = styled.input`
     color: black;
@@ -45,7 +45,7 @@ function PaginaComentário2 () {
             comment,
         };
   
-        const response = await api.post('http://localhost:3005/api/createComment', data);
+        const response = await api.post('http://localhost:3005/createComment', data);
         console.log(response)
         if (response.data.success) {
             alert("Comentário Enviado com Sucesso!");
