@@ -9,7 +9,7 @@ export const Fundo = styled.body`
     position: relative;
 `
 
-export const Comentário = styled.div`
+export const Comentario = styled.div`
     position: absolute;
     top: 25%;
     left: 23%;
@@ -114,4 +114,20 @@ export const TituloSecao = styled.p`
     text-align: center;
     font-family: sans-serif;
     font-size: 273%;
+`
+export const ContainerV = styled.div`
+    position: absolute;
+    top: 30%;
+
+    
+
+`
+export const ComentariosV = styled.div`
+    position: absolute;
+    top: 50%;
+    width: 49vw;
+    height: 24vh;
+    left: 13%;
+    background-color: #9ceb60;
+    color: black;
 `

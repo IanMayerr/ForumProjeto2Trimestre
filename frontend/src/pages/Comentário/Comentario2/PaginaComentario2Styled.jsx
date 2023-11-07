@@ -8,8 +8,20 @@ export const Fundo = styled.body`
     z-index: auto;
     position: relative;
 `
-
-export const Comentário = styled.div`
+export const ContainerV = styled.div`
+    position: absolute;
+    top: 30%;
+`
+export const ComentariosV = styled.div`
+    position: absolute;
+    top: 50%;
+    width: 49vw;
+    height: 24vh;
+    left: 13%;
+    background-color: #9ceb60;
+    color: black;
+`
+export const Comentario = styled.div`
 position: absolute;
     top: 25%;
     left: 23%;
@@ -43,7 +55,7 @@ export const UsuarioNome = styled.p`
     font-weight: bold;
     position: absolute;
     left: 86%;
-    top: 25%;
+    top: 14%;
 `
 export const Problema = styled.p`
     font-size: 97%;
@@ -52,15 +64,6 @@ export const Problema = styled.p`
     left: 1%;
     top: 14%;
     width: 52vw;
-`
-export const plantaZé = styled.img`
-    background-image: url(../../../assets/plantalittleze.png);
-    position: relative;
-    top: 10%;
-    left: 10%;
-    width: 50vw;
-    height: 50vh;
-    z-index: 10;
 `
 export const Balaozinho = styled.img`
     position: absolute;
@@ -102,12 +105,12 @@ export const AddPostBalao = styled.img`
     z-index: 3;
     width: 29vh;
     height: 29vh;
-    bottom: 7%;
+    bottom: -56%;
     left: 81%;
 `
 export const AddBotton = styled.p`
     position: absolute;
-    bottom: 11%;
+    bottom: -52%;
     right: 10.9%;
     font-size: 350%;
     font-weight: bold;
