@@ -43,12 +43,12 @@ function PaginaComentário1() {
 
     const criarComentario = () => {
         axios
-            .post('http://localhost:3306/comment/create', { postId: postId, Comment: novoComentario })
+            .post('http://localhost:3005/comment/create', { "postId": postId, "Comment": novoComentario })
             .then((response) => {
                 console.log(response);
                 if (response.data.success) {
                     alert('Comentário Enviado com Sucesso!');
-                    setComentarios([...comentarios, { text: novoComentario }]);
+                    setComentarios([...comentarios, { "text": novoComentario }]);
                     setNovoComentario('');
                 }
             })
