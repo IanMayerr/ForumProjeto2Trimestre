@@ -29,18 +29,18 @@ function Paginaprincipal(){
 
     const navigate = useNavigate()
         const gotoComentario1 = () => {
-          navigate('/comentario1')
+          navigate('/comentario1/1')
         }
         const gotoComentario2 = () => {
-          navigate('/comentario2')
+          navigate('/comentario2/2')
         }
 
         const gotoComentario3 = () => {
-            navigate('/comentario3')
+            navigate('/comentario3/3')
         }
 
         const gotoComentario4 = () => {
-            navigate('/comentario4')
+            navigate('/comentario4/4')
         }
 
     return(

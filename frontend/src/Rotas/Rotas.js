@@ -17,10 +17,10 @@ function Rotas(){
             <Route path="registro" element={<Registro/>}/>
             <Route path="login" element={<Login/>}/>
             <Route path="perfil" element={<Perfil/>}/>
-            <Route path="comentario1" element={<PaginaComentário1/>}/>
-            <Route path="comentario2" element={<PaginaComentário2/>}/>
-            <Route path="comentario3" element={<PaginaComentário3/>}/>
-            <Route path="comentario4" element={<PaginaComentário4/>}/>
+            <Route path="comentario1/:id" element={<PaginaComentário1/>}/>
+            <Route path="comentario2/:id" element={<PaginaComentário2/>}/>
+            <Route path="comentario3/:id" element={<PaginaComentário3/>}/>
+            <Route path="comentario4/:id" element={<PaginaComentário4/>}/>
         </Routes>
         </BrowserRouter>
     )

@@ -4,8 +4,9 @@ import Balao from "../../../assets/Balao.png";
 import iconePerfil from "../../../assets/iconePerfil.svg";
 // import Comentar from "../../../components/Comentarios/Comentar";
 import styled from "styled-components";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 const InputComentario = styled.input`
     color: black;
@@ -40,22 +41,45 @@ function PaginaComentário1() {
     const [comentarios, setComentarios] = useState([]);
     const [novoComentario, setNovoComentario] = useState('');
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
+    const [data, setData] = useState([]);
+    const { id } = useParams();
+    
+    const criarComentario = async () => {
+        const data = {
+            id, 
+            novoComentario,
+            idUsuario: localStorage.getItem('@Auth:id')
+        }
 
-    const criarComentario = () => {
-        axios
-            .post('http://localhost:3005/comment/create', { "postId": postId, "Comment": novoComentario })
+        console.log(data);
+
+        await axios
+            .post('http://localhost:3005/api/comment/create', data)
             .then((response) => {
                 console.log(response);
                 if (response.data.success) {
                     alert('Comentário Enviado com Sucesso!');
-                    setComentarios([...comentarios, { "text": novoComentario }]);
-                    setNovoComentario('');
+                    // setComentarios([...comentarios, { "text": novoComentario }]);
+                    // setNovoComentario('');
                 }
             })
             .catch((error) => {
                 console.error('Erro na requisição:', error);
             });
     };
+
+    const fetchData = async () => {
+        const response = axios.get('http://localhost:3005/api/posts');
+        
+        if(response.data.success) {
+            setData(response.data.data);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     return (
         <>
@@ -95,6 +119,20 @@ function PaginaComentário1() {
                     </ContainerV>
                 )}
                 <ComentariosV>
+                    {data.map((comment) =>
+
+                        return (
+                            <>
+                                <p>comment.descricao</p>
+
+                                <ListaDeComentarios
+                                numberOfComments={ comment.descricao }
+                                id_usuario={ comment.id }
+                                descricao={ comment.descricao }/>
+                            
+                            </>
+                        )
+                    )}
                     {comentarios.length > 0 && (
                         <ul>
                             {comentarios.map((comentario, comentarioIndex) => (

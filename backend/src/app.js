@@ -24,6 +24,6 @@ app.use(express.json());
 app.set('port', process.env.PORT || 3005);
 app.use('/api', userRouter);
 app.use('/api/auth', loginRouter);
-app.use('/api/comment/create', commentRouter)
+app.use('/api', commentRouter)
 
 module.exports = app;

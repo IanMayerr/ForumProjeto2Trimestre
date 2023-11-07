@@ -10,5 +10,6 @@ const {
 
 // Criar os endpoints (rotas) que serão acessados a partir dos métodos HTTP (get,post,put,delete)
 router.post('/comment/create', createComment)
+router.get('/posts', getComments)
 
 module.exports = router;
