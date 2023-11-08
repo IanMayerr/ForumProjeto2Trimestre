@@ -1,5 +1,5 @@
 import Header from "../../../components/Header/Header";
-import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV } from "./PaginaComentario1Styled";
+import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV, ComentariosEscrita } from "./PaginaComentario1Styled";
 import Balao from "../../../assets/Balao.png";
 import iconePerfil from "../../../assets/iconePerfil.svg";
 // import Comentar from "../../../components/Comentarios/Comentar";
@@ -119,27 +119,20 @@ function PaginaComentário1() {
                     </ContainerV>
                 )}
                 <ComentariosV>
-                    {data.map((comment) =>
+                  {data.map((comment) => {
+                  return (
+                    <>
 
-                        return (
-                            <>
-                                <p>comment.descricao</p>
+                    <ComentariosEscrita>{comment.descricao}</ComentariosEscrita>
 
-                                <ListaDeComentarios
-                                numberOfComments={ comment.descricao }
-                                id_usuario={ comment.id }
-                                descricao={ comment.descricao }/>
-                            
-                            </>
-                        )
-                    )}
-                    {comentarios.length > 0 && (
-                        <ul>
-                            {comentarios.map((comentario, comentarioIndex) => (
-                                <li key={comentarioIndex}>{comentario.text}</li>
-                            ))}
-                        </ul>
-                    )}
+                    <listaComentarios key="id"
+                    
+                        numberOfComments={comment.descricao}
+                        id_usuario={comment.id}
+                        descricao={comment.descricao} />
+        </>
+    );
+})}
                 </ComentariosV>
             </SecaoComentario>
             <Fundo />

@@ -132,9 +132,6 @@ export const TituloSecao = styled.p`
 export const ContainerV = styled.div`
     position: absolute;
     top: 30%;
-
-    
-
 `
 export const ComentariosV = styled.div`
     position: absolute;
@@ -144,4 +141,11 @@ export const ComentariosV = styled.div`
     left: 13%;
     background-color: #9ceb60;
     color: black;
+`
+
+export const ComentariosEscrita = styled.p`
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 100%;
+    color: black;
+
 `

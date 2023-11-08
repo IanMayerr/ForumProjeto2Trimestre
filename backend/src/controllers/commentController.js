@@ -29,25 +29,24 @@ async function createComment(request, response) {
 }
 
 async function getComments(request, response) {
+
     const query = 'SELECT * FROM comentarios';
 
     connection.query(query, (err, results) => {
         if (results) {
-            response
-                .status(200)
-                .json(`{
-                    success: true,
-                    message: 'Sucesso'
-                    data: results
-                }`)
+            response.status(200).json({
+                success: true,
+                message: 'Sucesso',
+                data: results
+            });
         } else {
             console.log(err);
         }
-    })
+    });
 }
 
 
 module.exports = {
     createComment,
-    getComments
+    getComments,
 }
