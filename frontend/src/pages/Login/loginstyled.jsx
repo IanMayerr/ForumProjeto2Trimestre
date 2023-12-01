@@ -99,21 +99,21 @@ export const SubTituloLogo = styled.h2`
     color: black;
     margin-top: 50vh;
     position: absolute;
-    margin-left: 1035px;
+    margin-left: 67%;
 
 `
 export const MiniSubTituloLogo = styled.h3`
     color: black;
     margin-top: 55vh;
     position: absolute;
-    margin-left: 1050px;
+    margin-left: 68.5%;
 `
 
 export const Paragrafo = styled.p`
     color: black;
     position: absolute;
     margin-top: 65vh;
-    margin-left: 940px;
+    margin-left:60%;
     font-weight: bold;
 `
 

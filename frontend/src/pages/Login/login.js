@@ -32,7 +32,7 @@ function Login() {
 
         
 
-        return navigate("paginaprincipal")
+        return navigate("/paginaprincipal")
 
     };
 

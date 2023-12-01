@@ -18,7 +18,6 @@ const InputComentario = styled.input`
     height: 5vh;
     border: none;
     padding-left: 10px;
-
 `
 
 const ButtonComentario = styled.button`

@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
 export const Fundo = styled.body`
-    height: 198vh;
-    width: 100vw;
+    min-height: 205vh;
+    width: 98.8vw;
     background-color: rgba(113, 163, 156, 1);
     display: flex;
     z-index: auto;
@@ -73,9 +73,9 @@ export const TextoMain = styled.p`
     font-size: 200%;
     color: blue;
     position: absolute;
-    top: 22.9%;
-    left: 19.7%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebfuchet MS', sans-serif;
+    top: 22.3%;
+    left: 19.5%;
+    font-family: 'Gill Sans','Gill Sans MT',Calibri,'Trebfuchet MS',sans-serif;
     z-index: 10;
 `
 export const AddPostBalao = styled.img`
@@ -83,13 +83,13 @@ export const AddPostBalao = styled.img`
     z-index: 3;
     width: 29vh;
     height: 29vh;
-    bottom: -56%;
-    left: 81%;
+    bottom: -68%;
+    left: 84%;
 `
 export const AddBotton = styled.p`
     position: absolute;
-    bottom: -52%;
-    right: 10.9%;
+    bottom: -64.5%;
+    right: 7.9%;
     font-size: 350%;
     font-weight: bold;
     z-index: 10;
@@ -125,8 +125,8 @@ export const ContainerV = styled.div`
 `
 export const ComentariosV = styled.div`
     position: absolute;
-    top: 35%;
-    width: 49vw;
+    top: 49%;
+    width: 51vw;
     min-height: 24vh;
     left: 13%;
     background-color: #9ceb60;

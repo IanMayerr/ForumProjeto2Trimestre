@@ -11,14 +11,13 @@ import { useParams } from 'react-router-dom';
 const InputComentario = styled.input`
     color: black;
     position: relative;
-    left: -2%;
+    left: 10%;
     font-size: 15px;
     top: 5%;
     width: 50vw;
     height: 5vh;
     border: none;
     padding-left: 10px;
-
 `
 
 const ButtonComentario = styled.button`
@@ -29,7 +28,7 @@ const ButtonComentario = styled.button`
     font-weight: bold;
     position: absolute;
     margin-right: 100%;
-    left: 96.8%;
+    left: 108.8%;
     top: -15%;
     height: 5.3vh;
     cursor: pointer;
