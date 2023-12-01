@@ -1,11 +1,12 @@
 import Header from "../../../components/Header/Header";
-import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV } from "./PaginaComentario2Styled";
+import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV, ComentariosEscrita } from "./PaginaComentario2Styled";
 import Balao from "../../../assets/Balao.png";
 import iconePerfil from "../../../assets/iconePerfil.svg";
 // import Comentar from "../../../components/Comentarios/Comentar";
 import styled from "styled-components";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 const InputComentario = styled.input`
     color: black;
@@ -34,28 +35,57 @@ const ButtonComentario = styled.button`
     cursor: pointer;
 `
 
-const postId = 1;
+const postId = 2;
 
 function PaginaComentário2() {
     const [comentarios, setComentarios] = useState([]);
     const [novoComentario, setNovoComentario] = useState('');
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
+    const [data, setData] = useState([]);
+    const { id } = useParams();
 
-    const criarComentario = () => {
-        axios
-            .post('http://localhost:3306/comment/create', { postId: postId, Comment: novoComentario })
+    const criarComentario = async () => {
+        const data = {
+            id,
+            novoComentario,
+            idUsuario: localStorage.getItem('@Auth:id')
+        }
+
+        console.log(data);
+
+        await axios
+            .post('http://localhost:3005/api/comment/create', data)
             .then((response) => {
                 console.log(response);
                 if (response.data.success) {
                     alert('Comentário Enviado com Sucesso!');
-                    setComentarios([...comentarios, { text: novoComentario }]);
+                    setComentarios([...comentarios, { "text": novoComentario }]);
                     setNovoComentario('');
+                    fetchData();
                 }
             })
             .catch((error) => {
                 console.error('Erro na requisição:', error);
             });
     };
+
+    const fetchData = async () => {
+        const response = await axios.get('http://localhost:3005/api/posts', data);
+
+        if (response.data.data) {
+            setData(response.data.data);
+            console.log(setData)
+        } else {
+            alert('Não foi criado comentário');
+        }
+
+
+    }
+
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     return (
         <>
@@ -67,7 +97,7 @@ function PaginaComentário2() {
                 <Titulo>Criatividade</Titulo>
                 <UsuarioNome>Por Thiago</UsuarioNome>
                 <Problema>
-                Analisando a situação atual da empresa, é possível notar que, após um período de grandes ideias e desenvolvimento de inovações, a equipe se encontra em um tipo de bloqueio criativo. Depois de tantas ideias e esforço dos funcionários, é de se supor que estes trabalhadores se encontram em faltas de ideias e soluções. Além disso, o fato de a concorrência estar ganhando força desmotiva ainda mais os responsáveis pelo setor criativo da empresa, junto com a pressão imposta sobre eles, prejudica em demasiado a produção de algo novo.<br></br>
+                    Analisando a situação atual da empresa, é possível notar que, após um período de grandes ideias e desenvolvimento de inovações, a equipe se encontra em um tipo de bloqueio criativo. Depois de tantas ideias e esforço dos funcionários, é de se supor que estes trabalhadores se encontram em faltas de ideias e soluções. Além disso, o fato de a concorrência estar ganhando força desmotiva ainda mais os responsáveis pelo setor criativo da empresa, junto com a pressão imposta sobre eles, prejudica em demasiado a produção de algo novo.<br></br>
                     <br></br>
                     Como encarregado de reviver a cultura da empresa no intuito de auxiliar o estímulo criativo dos funcionários, a primeira tarefa a se fazer seria realizar um tipo de reforma no ambiente de trabalho. Seria proposto um design com cores mais vívida e um ambiente de lazer para que seja possível os trabalhadores tirarem um tempo de descanso físico e mental. Contendo equipamentos diversos de entretenimento, como: Televisões, jogos, tabuleiros, sofás, etc... Além disso, também seria proposto uma área na qual os funcionários possam sentar-se em círculo em volta de uma grande mesa redonda no intuito de dialogarem e discutirem suas ideias. Nessa sala, também seria possível usar projetores e notebooks para apresentar o que acham interessante para o decorrer da conversa. Com isso, o estresse seria reduzido e isso ajudará no processo criativo para a soluções de problemas e na criação de novos produtos. <br></br>
                     <br></br>
@@ -96,13 +126,15 @@ function PaginaComentário2() {
                     </ContainerV>
                 )}
                 <ComentariosV>
-                    {comentarios.length > 0 && (
-                        <ul>
-                            {comentarios.map((comentario, comentarioIndex) => (
-                                <li key={comentarioIndex}>{comentario.text}</li>
-                            ))}
-                        </ul>
-                    )}
+                    {data.map((comentarios) => {
+                        return (
+                            <>
+
+                                <ComentariosEscrita>{comentarios.descricao}</ComentariosEscrita>
+
+                            </>
+                        );
+                    })}
                 </ComentariosV>
             </SecaoComentario>
             <Fundo />

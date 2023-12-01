@@ -1,5 +1,5 @@
 import Header from "../../../components/Header/Header";
-import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV, ComentariosEscrita } from "./PaginaComentario1Styled";
+import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV, ComentariosEscrita, nomeUsuario } from "./PaginaComentario1Styled";
 import Balao from "../../../assets/Balao.png";
 import iconePerfil from "../../../assets/iconePerfil.svg";
 // import Comentar from "../../../components/Comentarios/Comentar";
@@ -59,8 +59,9 @@ function PaginaComentário1() {
                 console.log(response);
                 if (response.data.success) {
                     alert('Comentário Enviado com Sucesso!');
-                    // setComentarios([...comentarios, { "text": novoComentario }]);
-                    // setNovoComentario('');
+                    setComentarios([...comentarios, { "text": novoComentario }]);
+                    setNovoComentario('');
+                    fetchData();
                 }
             })
             .catch((error) => {
@@ -69,11 +70,16 @@ function PaginaComentário1() {
     };
 
     const fetchData = async () => {
-        const response = axios.get('http://localhost:3005/api/posts');
+        const response = await axios.get('http://localhost:3005/api/posts', data);
         
-        if(response.data.success) {
+        if(response.data.data) {
             setData(response.data.data);
+            console.log(setData)
+        } else {
+			alert('Não foi criado comentário');
         }
+
+
     }
 
 
@@ -84,12 +90,19 @@ function PaginaComentário1() {
     return (
         <>
             <Header />
+
             <Balaozinho src={Balao}></Balaozinho>
+
             <TextoMain>Main</TextoMain>
+
             <IconePerfil src={iconePerfil}></IconePerfil>
+
             <Comentario>
+
                 <Titulo>Burnout no Ambiente de Trabalho</Titulo>
+
                 <UsuarioNome>Por Raquel</UsuarioNome>
+
                 <Problema>
                     O Clonazepam ou mais conhecido como Rivotril é uma medicação de tarja preta que é utilizada na ansiedade ou transtornos de humor.<br></br> Ele afeta a serotonina, o neurotransmissor que é responsável pelo humor e as emoções, e muitas vezes a baixa serotonina pode causar a ansiedade. O medicamento atua no sistema nervoso central causando inibição no sistema nervoso, tal sistema que é constituído pela medula espinal e encéfalo. Consequentemente o remédio atua no tronco encefálico, onde há o bulbo raquidiano que participa no processo do batimento cardíaco, o que o auxilia nas palpitações. O medicamento é composto por clonazepam(0,5mg), o que de fato ajuda no sono e outros compostos como lactose, amido de milho, amido pré-gelatinizado, óxido de ferro amarelo, óxido férrico, talco e estearato de magnésio.<br></br>
                     <br></br>
@@ -103,7 +116,9 @@ function PaginaComentário1() {
             <Divisao />
             <AddPostBalao onClick={() => setMostrarFormulario(!mostrarFormulario)} src={Balao}></AddPostBalao>
             <AddBotton onClick={() => setMostrarFormulario(!mostrarFormulario)}>+</AddBotton>
+
             <SecaoComentario>
+
                 <TituloSecao>Comentários</TituloSecao>
                 {mostrarFormulario && (
                     <ContainerV>
@@ -119,17 +134,12 @@ function PaginaComentário1() {
                     </ContainerV>
                 )}
                 <ComentariosV>
-                  {data.map((comment) => {
+                  {data.map((comentarios) => {
                   return (
                     <>
 
-                    <ComentariosEscrita>{comment.descricao}</ComentariosEscrita>
+                    <ComentariosEscrita>{comentarios.descricao}</ComentariosEscrita>
 
-                    <listaComentarios key="id"
-                    
-                        numberOfComments={comment.descricao}
-                        id_usuario={comment.id}
-                        descricao={comment.descricao} />
         </>
     );
 })}

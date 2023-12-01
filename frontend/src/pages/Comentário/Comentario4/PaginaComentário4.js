@@ -1,12 +1,13 @@
 import Header from "../../../components/Header/Header";
-import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV } from "./PaginaComentario4Styled";
+import { Balaozinho, Fundo, Comentario, Titulo, UsuarioNome, Divisao, IconePerfil, TextoMain, AddPostBalao, AddBotton, Problema, SecaoComentario, TituloSecao, ContainerV, ComentariosV, ComentariosEscrita } from "./PaginaComentario4Styled";
 import Balao from "../../../assets/Balao.png";
 import iconePerfil from "../../../assets/iconePerfil.svg";
 // import Comentar from "../../../components/Comentarios/Comentar";
 import styled from "styled-components";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import plantalittleze from "../../../assets/plantalittleze.png"
+import { useParams } from 'react-router-dom';
 
 const InputComentario = styled.input`
     color: black;
@@ -35,28 +36,57 @@ const ButtonComentario = styled.button`
     cursor: pointer;
 `
 
-const postId = 1;
+const postId = 4;
 
 function PaginaComentário4() {
     const [comentarios, setComentarios] = useState([]);
     const [novoComentario, setNovoComentario] = useState('');
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
+    const [data, setData] = useState([]);
+    const { id } = useParams();
 
-    const criarComentario = () => {
-        axios
-            .post('http://localhost:3306/comment/create', { postId: postId, Comment: novoComentario })
+    const criarComentario = async () => {
+        const data = {
+            id,
+            novoComentario,
+            idUsuario: localStorage.getItem('@Auth:id')
+        }
+
+        console.log(data);
+
+        await axios
+            .post('http://localhost:3005/api/comment/create', data)
             .then((response) => {
                 console.log(response);
                 if (response.data.success) {
                     alert('Comentário Enviado com Sucesso!');
-                    setComentarios([...comentarios, { text: novoComentario }]);
+                    setComentarios([...comentarios, { "text": novoComentario }]);
                     setNovoComentario('');
+                    fetchData();
                 }
             })
             .catch((error) => {
                 console.error('Erro na requisição:', error);
             });
     };
+
+    const fetchData = async () => {
+        const response = await axios.get('http://localhost:3005/api/posts', data);
+
+        if (response.data.data) {
+            setData(response.data.data);
+            console.log(setData)
+        } else {
+            alert('Não foi criado comentário');
+        }
+
+
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
 
     return (
         <>
@@ -65,19 +95,19 @@ function PaginaComentário4() {
             <TextoMain>Main</TextoMain>
             <IconePerfil src={iconePerfil}></IconePerfil>
             <Comentario >
-            <Titulo>Espaço para home office</Titulo>
+                <Titulo>Espaço para home office</Titulo>
 
-            <UsuarioNome>Por Diogo</UsuarioNome>
+                <UsuarioNome>Por Diogo</UsuarioNome>
 
-            <Problema>
-                Para realizar as tarefas no notebook separei um espaço que também pode ser adequado para gravar vídeos, tendo um quadro móvel e espaço o suficiente pra que o Little Zé possa ficar tanto sentado como em pé, em frente a esse espaço há uma área onde tem uma parte confortável para os gatinhos de Little Zé e com um armário para guardar livros e etc...<br></br>
-                <br></br>
-                Para ter um lugar de descanso e aconchegante, separei uma parte do quarto onde o piso será de carpete e haverá um grande armário para guardar jogos e coisas no geral, também terá uma televisão, um videogame e um Puff para que Little Zé possa relaxar legal depois de um dia cansativo de trabalho. <br></br>
-            </Problema>
+                <Problema>
+                    Para realizar as tarefas no notebook separei um espaço que também pode ser adequado para gravar vídeos, tendo um quadro móvel e espaço o suficiente pra que o Little Zé possa ficar tanto sentado como em pé, em frente a esse espaço há uma área onde tem uma parte confortável para os gatinhos de Little Zé e com um armário para guardar livros e etc...<br></br>
+                    <br></br>
+                    Para ter um lugar de descanso e aconchegante, separei uma parte do quarto onde o piso será de carpete e haverá um grande armário para guardar jogos e coisas no geral, também terá uma televisão, um videogame e um Puff para que Little Zé possa relaxar legal depois de um dia cansativo de trabalho. <br></br>
+                </Problema>
 
-            <plantaZé src={plantalittleze} />
+                <plantaZé src={plantalittleze} />
 
-        </Comentario >
+            </Comentario >
 
             <Divisao />
 
@@ -102,16 +132,18 @@ function PaginaComentário4() {
                     </ContainerV>
                 )}
                 <ComentariosV>
-                    {comentarios.length > 0 && (
-                        <ul>
-                            {comentarios.map((comentario, comentarioIndex) => (
-                                <li key={comentarioIndex}>{comentario.text}</li>
-                            ))}
-                        </ul>
-                    )}
+                    {data.map((comentarios) => {
+                        return (
+                            <>
+
+                                <ComentariosEscrita>{comentarios.descricao}</ComentariosEscrita>
+
+                            </>
+                        );
+                    })}
                 </ComentariosV>
             </SecaoComentario>
-        <Fundo />
+            <Fundo />
         </>
     );
 }

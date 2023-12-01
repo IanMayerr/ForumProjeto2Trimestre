@@ -107,6 +107,7 @@ export const SecaoComentario = styled.div`
     padding-left: 3rem;
     box-shadow: 1vh 1vh white;
     z-index: 1;
+    overflow-y: auto;
 `
 
 export const TituloSecao = styled.p`
@@ -124,10 +125,20 @@ export const ContainerV = styled.div`
 `
 export const ComentariosV = styled.div`
     position: absolute;
-    top: 50%;
+    top: 35%;
     width: 49vw;
-    height: 24vh;
+    min-height: 24vh;
     left: 13%;
     background-color: #9ceb60;
     color: black;
+    overflow-y: auto;
+`
+
+export const ComentariosEscrita = styled.p`
+    font-family: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
+    font-size: 100%;
+    color: black;
+    position: relative;
+    left: 4%;
+    width: 42vw;
 `
